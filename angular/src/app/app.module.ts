@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { BooksState } from './store/states/books.state';
 
 const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
 
@@ -30,7 +31,7 @@ const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
     IdentityConfigModule,
     TenantManagementConfigModule,
     SettingManagementConfigModule,
-    NgxsModule.forRoot(),
+    NgxsModule.forRoot([BooksState]),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

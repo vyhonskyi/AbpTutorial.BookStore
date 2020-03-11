@@ -1,6 +1,7 @@
 import { ABP } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ApplicationLayoutComponent } from '@abp/ng.theme.basic';
 
 const routes: Routes = [
   {
@@ -27,6 +28,17 @@ const routes: Routes = [
   {
     path: 'setting-management',
     loadChildren: () => import('@abp/ng.setting-management').then(m => m.SettingManagementModule)
+  },
+  {
+    path: 'books',
+    component: ApplicationLayoutComponent,
+    loadChildren: () => import('./books/books.module').then(m => m.BooksModule),
+    data: {
+      routes: {
+        name: '::Menu:Books',
+        iconClass: 'fas fa-book'
+      } as ABP.Route
+    }
   }
 ];
 

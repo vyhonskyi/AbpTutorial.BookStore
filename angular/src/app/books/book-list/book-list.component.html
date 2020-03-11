@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col col-md-6">
+        <h5 class="card-title">
+          {{ '::Menu:Books' | abpLocalization }}
+        </h5>
+      </div>
+      <div class="text-right col col-md-6"></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <abp-table
+      [value]="books$ | async"
+      [abpLoading]="loading"
+      [headerTemplate]="tableHeader"
+      [bodyTemplate]="tableBody"
+      [rows]="10"
+      [scrollable]="true"
+    >
+    </abp-table>
+    <ng-template #tableHeader>
+      <tr>
+        <th>{{ '::Name' | abpLocalization }}</th>
+        <th>{{ '::Type' | abpLocalization }}</th>
+        <th>{{ '::PublishDate' | abpLocalization }}</th>
+        <th>{{ '::Price' | abpLocalization }}</th>
+      </tr>
+    </ng-template>
+    <ng-template #tableBody let-data>
+      <tr>
+        <td>{{ data.name }}</td>
+        <td>{{ booksType[data.type] }}</td>
+        <td>{{ data.publishDate | date }}</td>
+        <td>{{ data.price }}</td>
+      </tr>
+    </ng-template>
+  </div>
+</div>
