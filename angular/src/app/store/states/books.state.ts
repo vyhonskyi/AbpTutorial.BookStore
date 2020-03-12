@@ -1,5 +1,5 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { GetBooks } from '../actions/books.actions';
+import { GetBooks, CreateUpdateBook, DeleteBook } from '../actions/books.actions';
 import { Books } from '../models/books';
 import { BooksService } from '../../books/shared/books.service';
 import { tap } from 'rxjs/operators';
@@ -29,5 +29,19 @@ export class BooksState {
         });
       })
     );
+  }
+
+  @Action(CreateUpdateBook)
+  save(ctx: StateContext<Books.State>, action: CreateUpdateBook) {
+    if (action.id) {
+      return this.booksService.update(action.payload, action.id);
+    } else {
+      return this.booksService.create(action.payload);
+    }
+  }
+
+  @Action(DeleteBook)
+  delete(ctx: StateContext<Books.State>, action: DeleteBook) {
+    return this.booksService.delete(action.id);
   }
 }

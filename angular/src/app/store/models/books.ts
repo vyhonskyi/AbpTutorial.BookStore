@@ -31,4 +31,11 @@ export namespace Books {
     ScienceFiction,
     Poetry
   }
+
+  export interface CreateUpdateBookInput {
+    name: string;
+    type: BookType;
+    publishDate: string;
+    price: number;
+  }
 }
